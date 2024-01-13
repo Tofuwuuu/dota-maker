@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark blue background color */
+            color: #fff; /* White text color */
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .dashboard-container {
+            background-color: #333; /* Dark gray container background color */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #28a745; /* Green heading color */
+            font-size: 24px; /* Increase font size for welcome message */
+            margin-bottom: 10px; /* Add space between welcome message and role */
+        }
+
+        .dashboard-content {
+            border-top: 2px solid #555; /* Stylish border at the top of the content */
+            padding-top: 10px; /* Add some space above the content */
+        }
+
+        p {
+            color: #fff; /* White text color */
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007BFF; /* Blue link color */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome, {{ user }}!</h1>
+        <div class="dashboard-content">
+            <p>Your role: {{ role }}</p>
+            <p><a href="{{ url_for('logout') }}">Logout</a></p>
+        </div>
+    </div>
+</body>
+</html>

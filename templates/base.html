@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Tournament Player Website</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark blue background color */
+            color: #fff; /* White text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .welcome-container {
+            border: 2px solid #007BFF; /* Blue border color */
+            border-image: linear-gradient(to right, #007BFF, #28a745); /* Gradient border color */
+            border-image-slice: 1; /* Ensure gradient covers the entire border */
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Box shadow for added depth */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition on hover */
+        }
+
+        .welcome-container:hover {
+            transform: scale(1.03); /* Scale up on hover */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Increase box shadow on hover */
+        }
+
+        h1 {
+            color: #007BFF; /* Blue heading color */
+        }
+
+        p {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        a {
+            color: #fff; /* White text color */
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid #007BFF; /* Blue border for the button */
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition on hover */
+        }
+
+        a:hover {
+            background-color: #007BFF; /* Change background color on hover */
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.7); /* Add box shadow on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Welcome to Your Tournament Player Website</h1>
+        <p><a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a></p>
+    </div>
+</body>
+</html>
