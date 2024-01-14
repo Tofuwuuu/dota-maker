@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
         body {
-            background-color: #121212; /* Dark blue background color */
-            color: #fff; /* White text color */
+            background-color: #121212;
+            color: #fff;
             font-family: Arial, sans-serif;
             display: flex;
             align-items: center;
@@ -17,21 +18,21 @@
         }
 
         form {
-            background-color: #333; /* Dark gray form background color */
+            background-color: #333;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: 300px;
-            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition on hover */
+            width: 300px; /* Adjusted to match the login form */
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
         form:hover {
-            background-color: #444; /* Darker gray on hover */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Add box shadow on hover */
+            background-color: #444;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
 
         label {
-            color: #fff; /* White label text color */
+            color: #fff;
         }
 
         input {
@@ -42,13 +43,13 @@
         }
 
         input[type="submit"] {
-            background-color: #28a745; /* Green submit button color */
-            color: #fff; /* White text color */
+            background-color: #28a745;
+            color: #fff;
             cursor: pointer;
         }
 
         input[type="submit"]:hover {
-            background-color: #218838; /* Darker green on hover */
+            background-color: #218838;
         }
 
         p {
@@ -57,12 +58,19 @@
         }
 
         a {
-            color: #007BFF; /* Blue link color */
+            display: inline-block;
+            color: #fff;
             text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #007BFF;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            margin-top: 10px;
         }
 
         a:hover {
-            text-decoration: underline;
+            background-color: #007BFF;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
         }
 
         @media (max-width: 400px) {
@@ -72,11 +80,12 @@
         }
     </style>
 </head>
+
 <body>
     <form method="post">
         <h1 style="text-align: center;">Register</h1>
         {% if error %}
-            <p style="color: red; text-align: center;">{{ error }}</p>
+        <p style="color: red; text-align: center;">{{ error }}</p>
         {% endif %}
         <label for="email">Email:</label>
         <input type="email" name="email" required>
@@ -84,7 +93,15 @@
         <label for="password">Password:</label>
         <input type="password" name="password" required>
         <br>
+        <label for="role">Select Role:</label>
+        <select name="role" required>
+            <option value="contestant">Contestant</option>
+            <option value="organizer">Organizer</option>
+        </select>
+        <br>
         <input type="submit" value="Register">
+        <p><a href="{{ url_for('home') }}" class="home-button">Home</a></p>
     </form>
 </body>
+
 </html>

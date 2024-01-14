@@ -32,9 +32,10 @@ def register():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        role = request.form['role']
 
         if email not in users:
-            users[email] = {'password': password, 'role': 'contestant'}
+            users[email] = {'password': password, 'role': role}
             session['user'] = email
             return redirect(url_for('dashboard'))
         else:
@@ -50,7 +51,14 @@ def dashboard():
     user = session['user']
     role = users[user]['role']
 
-    return render_template('dashboard.html', user=user, role=role)
+    if role == 'contestant':
+        content = 'Contestant Dashboard'
+    elif role == 'organizer':
+        content = 'Organizer Dashboard'
+    else:
+        content = 'Unknown Role Dashboard'
+
+    return render_template('dashboard.html', user=user, role=role, content=content)
 
 @app.route('/logout')
 def logout():
