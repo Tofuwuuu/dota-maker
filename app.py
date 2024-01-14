@@ -51,14 +51,14 @@ def dashboard():
     user = session['user']
     role = users[user]['role']
 
-    if role == 'contestant':
-        content = 'Contestant Dashboard'
-    elif role == 'organizer':
-        content = 'Organizer Dashboard'
-    else:
-        content = 'Unknown Role Dashboard'
+    return render_template('dashboard.html', user=user, role=role)
 
-    return render_template('dashboard.html', user=user, role=role, content=content)
+@app.route('/create_tournament')
+def create_tournament():
+    if 'user' not in session or users[session['user']]['role'] != 'organizer':
+        return redirect(url_for('login'))
+
+    return render_template('create_tournament.html')
 
 @app.route('/logout')
 def logout():
