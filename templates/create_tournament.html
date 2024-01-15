@@ -21,7 +21,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: 500px;
+            width: 1000px;
             text-align: center;
         }
 
@@ -31,23 +31,221 @@
             margin-bottom: 20px;
         }
 
-        /* Add your custom styling for the tournament creation form */
+        a.home-link {
+            color: #007BFF;
+            text-decoration: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        a.create-tournament-link {
+            display: block;
+            margin: 20px auto;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        a.create-tournament-link:hover {
+            background-color: #0056b3;
+        }
+
+        .tournament-form {
+            margin-top: 20px;
+        }
+
+        .tournament-form label {
+            color: #fff;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .tournament-form input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        .tournament-details {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .details-box {
+            display: inline-block;
+            width: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .details-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .details-box p {
+            margin: 10px 0;
+            padding: 5px;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            background-color: #444;
+            display: inline-block;
+            width: auto;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .details-box p .edit-btn {
+        position: absolute;
+        top: 5px; /* Adjust this value to move the icon vertically */
+        right: 25px; /* Adjust this value to move the icon horizontally */
+        cursor: pointer;
+        color: #fff;
+        }
+
+        .details-box p .edit-btn {
+            right: 25px; /* Move the ellipsis to the left of the plus sign */
+        }
+
+        .details-box p .create-btn {
+            position: absolute;
+            top: 5px; /* Adjust this value to move the icon vertically */
+            right: 5px; /* Adjust this value to move the icon horizontally */
+            cursor: pointer;
+            color: #fff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #28a745;
+        }
     </style>
 </head>
 <body>
+    <a href="{{ url_for('dashboard') }}" class="home-link">Home</a>
     <div class="create-tournament-container">
         <h1>Create Tournament</h1>
-        <!-- Add your tournament creation form here -->
-        <form>
-            <!-- Example: Tournament Name -->
+        <!-- Create Tournament Button -->
+        <a href="#" class="create-tournament-link" onclick="displayDetails()">Create Tournament</a>
+
+        <!-- Tournament Form -->
+        <form class="tournament-form" id="tournamentForm">
             <label for="tournamentName">Tournament Name:</label>
             <input type="text" id="tournamentName" name="tournamentName" required>
-            
-            <!-- Add more form fields as needed -->
 
-            <br>
-            <input type="submit" value="Create Tournament">
+            <label for="tournamentDate">Date:</label>
+            <input type="text" id="tournamentDate" name="tournamentDate" required>
+
+            <label for="tournamentVenue">Venue:</label>
+            <input type="text" id="tournamentVenue" name="tournamentVenue" required>
+
+            <!-- New Input for Teams -->
+            <label for="tournamentTeams">Teams:</label>
+            <input type="text" id="tournamentTeams" name="tournamentTeams" required>
         </form>
+
+        <!-- Tournament Details -->
+        <div class="tournament-details" id="tournamentDetails">
+            <!-- Details will be dynamically added here -->
+        </div>
+
+        <script>
+            function displayDetails() {
+                // Create a new set of elements for tournament details
+                var detailsBox = document.createElement('div');
+                detailsBox.className = 'details-box';
+
+                var h2 = document.createElement('h2');
+                h2.innerText = 'Tournament Details:';
+                detailsBox.appendChild(h2);
+
+                var pName = document.createElement('p');
+                pName.innerHTML = '<strong>Name:</strong> <span>' + document.getElementById("tournamentName").value + '</span>' +
+                    '<span class="edit-btn" onclick="editDetails(this)">...</span>' +
+                    '<span class="create-btn" onclick="createDetails(this)">+</span>';
+                detailsBox.appendChild(pName);
+
+                var pDate = document.createElement('p');
+                pDate.innerHTML = '<strong>Date:</strong> <span>' + document.getElementById("tournamentDate").value + '</span>' +
+                '<span class="edit-btn" onclick="editDetails(this)">...</span>' +
+                    '<span class="create-btn" onclick="createDetails(this)">+</span>';
+                detailsBox.appendChild(pDate);
+
+                var pVenue = document.createElement('p');
+                pVenue.innerHTML = '<strong>Venue:</strong> <span>' + document.getElementById("tournamentVenue").value + '</span>' +
+                    '<span class="edit-btn" onclick="editDetails(this)">...</span>' +
+                    '<span class="create-btn" onclick="createDetails(this)">+</span>';
+                detailsBox.appendChild(pVenue);
+
+                var pTeams = document.createElement('p');
+                pTeams.innerHTML = '<strong>Teams:</strong> <span>' + document.getElementById("tournamentTeams").value + '</span>' +
+                    '<span class="edit-btn" onclick="editDetails(this)">...</span>' +
+                    '<span class="create-btn" onclick="redirectToCreateTournament2()">+</span>';
+                detailsBox.appendChild(pTeams);
+
+                // Append the new details to the details section
+                document.getElementById("tournamentDetails").appendChild(detailsBox);
+            }
+
+            function editDetails(element) {
+                var spanElement = element.previousElementSibling;
+                var inputElement = document.createElement('input');
+                inputElement.value = spanElement.innerText.trim();
+                spanElement.innerHTML = '';
+                spanElement.appendChild(inputElement);
+
+                // Change the edit button to save
+                element.innerText = 'Save';
+                element.onclick = function () {
+                    spanElement.innerText = inputElement.value;
+                    element.innerText = '...';
+                    element.onclick = function () {
+                        editDetails(element);
+                    };
+                };
+            }
+
+            function createDetails(element) {
+                var parentElement = element.parentElement;
+                var newDetailsBox = parentElement.cloneNode(true);
+
+                // Clear the input values
+                var inputElements = newDetailsBox.getElementsByTagName('input');
+                for (var i = 0; i < inputElements.length; i++) {
+                    inputElements[i].value = '';
+                }
+
+                // Change the create button to save
+                var createBtn = newDetailsBox.querySelector('.create-btn');
+                createBtn.innerText = 'Save';
+                createBtn.onclick = function () {
+                    document.getElementById("tournamentDetails").appendChild(newDetailsBox);
+                    createBtn.innerText = '+';
+                    createBtn.onclick = function () {
+                        createDetails(createBtn);
+                    };
+                };
+
+                // Append the new details to the details section
+                document.getElementById("tournamentDetails").appendChild(newDetailsBox);
+            }
+
+            function redirectToCreateTournament2() {
+                // Redirect to create_tournament_2.html
+                window.location.href = "create_tournament_2.html";
+            }
+        </script>
     </div>
 </body>
 </html>

@@ -92,7 +92,7 @@
             {% endif %}
 
             <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
-            <a href="{{ url_for('home') }}" class="home-link">Home</a>
+            <a href="{{ request.path }}" class="home-link">Home</a>
 
             <!-- Moved paragraphs down -->
             <p>Your role: {{ role }}</p>
