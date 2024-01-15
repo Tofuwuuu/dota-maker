@@ -6,7 +6,6 @@
     <title>Dashboard</title>
     <style>
         body {
-            background-color: #121212;
             color: #fff;
             font-family: Arial, sans-serif;
             display: flex;
@@ -14,6 +13,18 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
+            background: linear-gradient(45deg, #121212, #1a1a1a, #121212);
+            background-size: 400% 400%;
+            animation: gradientAnimation 5s infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
         }
 
         .dashboard-container {
