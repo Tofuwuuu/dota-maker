@@ -1,1 +1,1 @@
-# dota-maker
+# Dota Tournament Bracket Maker
