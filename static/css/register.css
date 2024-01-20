@@ -1,14 +1,26 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #141414;
-}
-
 .center-screen {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    color: #fff;
+}
+
+h1 {
+    /* color: #28a745; */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #141414;
 }
 
 .center-container {
@@ -16,42 +28,23 @@ body {
 }
 
 .container {
-    background-color: #f5f5f5;
+    background-color: #701616;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.button-label {
+.radio-group {
+    margin-bottom: 20px;
+}
+
+.radio-label {
     display: block;
     margin-bottom: 10px;
-    padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
 }
 
-.button-label:hover {
-    background-color: #0056b3;
-}
-
-.button-label input {
-    display: none;
-}
-
-.button-label input:checked + span {
-    background-color: #0056b3;
-    color: #fff;
-}
-
-.button-label span {
-    padding: 10px;
-    display: inline-block;
-    border-radius: 5px;
+.radio-label input {
+    margin-right: 5px;
 }
 
 .button {
@@ -66,4 +59,14 @@ body {
 
 .button:hover {
     background-color: #45a049;
+}
+
+.home-button {
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.home-button:hover {
+    background-color: #007BFF;
 }

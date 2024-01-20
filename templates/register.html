@@ -11,16 +11,19 @@
 <div class="center-screen">
     <div class="center-container">
         <div class="container">
+            <h1>Create an Account</h1>
             <form action="" method="post">
-                <label class="button-label">
-                    <input type="radio" name="account_type" value="contestant" required>
-                    <span>Create as a Contestant</span>
-                </label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="account_type" value="contestant" required>
+                        Create as a Contestant
+                    </label>
 
-                <label class="button-label">
-                    <input type="radio" name="account_type" value="organizer" required>
-                    <span>Create as an Organizer</span>
-                </label>
+                    <label class="radio-label">
+                        <input type="radio" name="account_type" value="organizer" required>
+                        Create as an Organizer
+                    </label>
+                </div>
 
                 <button type="submit" class="button">Continue</button>
                 <p><a href="{{ url_for('home') }}" class="home-button">Home</a></p>
