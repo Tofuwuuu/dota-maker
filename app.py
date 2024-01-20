@@ -37,7 +37,7 @@ class RegistrationForm(FlaskForm):
 
 @app.route('/')
 def home():
-    return render_template('base.html')
+    return render_template('base/base.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

@@ -1,26 +1,33 @@
-{% extends "main.html" %}
-    {% block head %}
-        <title>Register</title>
-    {% endblock %}
-    {% block body %}
-        <form method="post">
-            <h1 style="text-align: center;">Register</h1>
-            {% if error %}
-            <p style="color: red; text-align: center;">{{ error }}</p>
-            {% endif %}
-            <label for="email">Email:</label>
-            <input type="email" name="email" required>
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-            <br>
-            <label for="role">Select Role:</label>
-            <select name="role" required>
-                <option value="contestant">Contestant</option>
-                <option value="organizer">Organizer</option>
-            </select>
-            <br>
-            <input type="submit" value="Register">
-            <p><a href="{{ url_for('home') }}" class="home-button">Home</a></p>
-        </form>
-    {% endblock%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+</head>
+<body>
+
+<div class="center-screen">
+    <div class="center-container">
+        <div class="container">
+            <form action="" method="post">
+                <label class="button-label">
+                    <input type="radio" name="account_type" value="contestant" required>
+                    <span>Create as a Contestant</span>
+                </label>
+
+                <label class="button-label">
+                    <input type="radio" name="account_type" value="organizer" required>
+                    <span>Create as an Organizer</span>
+                </label>
+
+                <button type="submit" class="button">Continue</button>
+                <p><a href="{{ url_for('home') }}" class="home-button">Home</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
