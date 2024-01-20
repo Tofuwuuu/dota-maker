@@ -1,81 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Tournament 2</title>
-    <style>
-        body {
-            background-color: #121212;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .tournament-details {
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: 1000px;
-            text-align: center;
-        }
-
-        h1 {
-            color: #28a745;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .details-box {
-            display: inline-block;
-            width: auto;
-            padding: 10px;
-            box-sizing: border-box;
-            margin-right: 10px;
-            position: relative;
-        }
-
-        .details-box h2 {
-            margin-bottom: 10px;
-        }
-
-        .details-box p {
-            margin: 10px 0;
-            padding: 5px;
-            border: 1px solid #fff;
-            border-radius: 4px;
-            background-color: #444;
-            display: inline-block;
-            width: auto;
-            box-sizing: border-box;
-            position: relative;
-        }
-
-        a.home-link {
-            color: #007BFF;
-            text-decoration: none;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: #28a745;
-        }
-    </style>
-</head>
-<body>
-    <a href="{{ url_for('dashboard') }}" class="home-link">Home</a>
-    <div class="tournament-details" id="tournamentDetails">
-        <!-- Details will be dynamically added here -->
-    </div>
-</body>
-</html>
+{% extends "main.html" %}
+    {% block head%}
+        <title>Create Tournament 2</title>
+    {% endblock %}
+    {%block body%}
+        <div>
+            <a href="{{ url_for('dashboard') }}" class="home-link">Home</a>
+            <div class="tournament-details" id="tournamentDetails">
+                <!-- Details will be dynamically added here -->
+        </div>
+    {% endblock%}
+ 

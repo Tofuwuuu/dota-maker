@@ -1,114 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <style>
-        body {
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background: linear-gradient(45deg, #121212, #1a1a1a, #121212);
-            background-size: 400% 400%;
-            animation: gradientAnimation 5s infinite;
-        }
+{% extends "main.html" %}
+    {% block head %}
+        <title>dashboard</title>
+    {% endblock %}
+    {% block body %}
+        <div class="dashboard-container">
+            <h1>Welcome, {{ user }}!</h1>
+            <div class="dashboard-content">
+                <!-- Create Tournament Button -->
+                {% if role == 'organizer' %}
+                    <a href="{{ url_for('create_tournament') }}" class="create-tournament-link">Create Tournament</a>
+                {% endif %}
 
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 0%;
-            }
-            100% {
-                background-position: 100% 100%;
-            }
-        }
+                <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+                <a href="{{ request.path }}" class="home-link">Home</a>
 
-        .dashboard-container {
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: 1000px;
-            height: 100%;
-            text-align: center;
-            overflow-y: auto;
-            max-height: 80vh;
-            position: relative;
-        }
-
-        h1 {
-            color: #28a745;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .dashboard-content {
-            border-top: 4px solid #555;
-            padding-top: 10px;
-            position: relative;
-        }
-
-        p {
-            color: #fff;
-            margin-top: 20px;
-        }
-
-        a {
-            color: #007BFF;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        a.home-link {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
-        a.create-tournament-link {
-            display: block;
-            margin: 20px auto; /* Center the link */
-        }
-
-        a.logout-link {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: #28a745;
-        }
-
-        /* Adjusted margin for paragraphs */
-        .dashboard-content p {
-            margin-top: 40px;
-        }
-    </style>
-</head>
-<body>
-    <div class="dashboard-container">
-        <h1>Welcome, {{ user }}!</h1>
-        <div class="dashboard-content">
-            <!-- Create Tournament Button -->
-            {% if role == 'organizer' %}
-                <a href="{{ url_for('create_tournament') }}" class="create-tournament-link">Create Tournament</a>
-            {% endif %}
-
-            <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
-            <a href="{{ request.path }}" class="home-link">Home</a>
-
-            <!-- Moved paragraphs down -->
-            <p>Your role: {{ role }}</p>
-            <p>Your additional content goes here.</p>
+                <!-- Moved paragraphs down -->
+                <p>Your role: {{ role }}</p>
+                <p>Your additional content goes here.</p>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    {% endblock %}

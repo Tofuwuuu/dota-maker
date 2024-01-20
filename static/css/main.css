@@ -1,0 +1,185 @@
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.welcome-container,
+.create-tournament-container,
+.tournament-details,
+.dashboard-container,
+form {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 1000px;
+    text-align: center;
+}
+
+.welcome-container {
+    border: 2px solid #007BFF;
+    border-image: linear-gradient(to right, #007BFF, #28a745);
+    border-image-slice: 1;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.welcome-container:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+h1 {
+    color: #28a745;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-top: 20px;
+    text-align: center;
+}
+
+a,
+a.home-link,
+a.create-tournament-link,
+a.logout-link {
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: inline-block;
+}
+
+a:hover,
+a.home-link:hover,
+a.create-tournament-link:hover,
+a.logout-link:hover {
+    background-color: #007BFF;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+}
+
+a.create-tournament-link,
+a.create-tournament-link:hover {
+    margin: 20px auto;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+form {
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+form:hover {
+    background-color: #444;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    color: #fff;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+}
+
+.tournament-details {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.details-box {
+    display: inline-block;
+    width: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-right: 10px;
+    position: relative;
+}
+
+.details-box h2 {
+    margin-bottom: 10px;
+}
+
+.details-box p {
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background-color: #444;
+    display: inline-block;
+    width: auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.details-box p .edit-btn {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.details-box p .create-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+
+@media (max-width: 400px) {
+    form {
+        width: 90%;
+    }
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+.dashboard-content {
+    border-top: 4px solid #555;
+    padding-top: 10px;
+    position: relative;
+}
+
+.dashboard-content p {
+    margin-top: 40px;
+}
