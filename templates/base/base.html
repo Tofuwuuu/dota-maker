@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Navigation Bar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    wew
+    {% for link in navigation_links %}
+        <a href="#">{{ link }}</a>
+    {% endfor %}
+    <div class="right">
+        <form action="{{ url_for('login') }}" class="form-inline">
+            <button type="submit" class="button">Login</button>
+        </form>
+
+        <form action="{{ url_for('register') }}" class="form-inline">
+            <button type="submit" class="button create-tournament-link">Register</button>
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
