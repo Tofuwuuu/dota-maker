@@ -1,3 +1,5 @@
+<!-- register.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,20 +14,16 @@
     <div class="center-container">
         <div class="container">
             <h1>Create an Account</h1>
-            <form action="" method="post">
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="account_type" value="contestant" required>
-                        Create as a Contestant
-                    </label>
+            <form action="{{ url_for('register') }}" method="post">
+                {{ form.hidden_tag() }}
 
-                    <label class="radio-label">
-                        <input type="radio" name="account_type" value="organizer" required>
-                        Create as an Organizer
-                    </label>
+                <div class="dropdown-group">
+                    {{ form.role.label }}
+                    {{ form.role(class="dropdown", id="account_type") }}
+                    <label class="dropdown-label" for="account_type">Account Type</label>
                 </div>
 
-                <button type="submit" class="button">Continue</button>
+                {{ form.submit(class="button", value="Continue") }}
                 <p><a href="{{ url_for('home') }}" class="home-button">Home</a></p>
             </form>
         </div>

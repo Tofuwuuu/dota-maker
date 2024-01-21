@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField
-from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms.validators import InputRequired, Length
+
 import os
 
 app = Flask(__name__)
@@ -30,10 +31,10 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
-    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
-    role = SelectField('Role', choices=[('player', 'Player'), ('organizer', 'Organizer')], validators=[InputRequired()])
+    role = SelectField('Role', choices=[('contestant', 'Contestant'), ('organizer', 'Organizer')], validators=[InputRequired()])
     submit = SubmitField('Register')
+
+
 
 @app.route('/')
 def home():
@@ -58,15 +59,12 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        existing_user = User.query.filter_by(username=form.username.data).first()
-        if existing_user:
-            return render_template('register.html', form=form, error='Username already registered')
+        role = form.role.data
 
-        new_user = User(username=form.username.data, password=form.password.data, role=form.role.data)
-        db.session.add(new_user)
-        db.session.commit()
-        login_user(new_user)
-        return redirect(url_for('dashboard'))
+        if role == 'contestant':
+            return redirect(url_for('contestant_login'))
+        elif role == 'organizer':
+            return redirect(url_for('organizer_login'))
 
     return render_template('register.html', form=form)
 
@@ -76,12 +74,34 @@ def dashboard():
     return render_template('dashboard.html', user=current_user)
 
 @app.route('/create_tournament')
-@login_required
 def create_tournament():
     if current_user.role != 'organizer':
         return redirect(url_for('login'))
 
     return render_template('create_tournament.html')
+
+# @app.route('/contestant_page')
+# def contestant_page():
+#     if current_user.role != 'contestant':
+#         return redirect(url_for('login'))
+
+#     return render_template('contestant_page.html')
+
+# @app.route('/organizer_page')
+# @login_required
+# def organizer_page():
+#     if current_user.role != 'organizer':
+#         return redirect(url_for('login'))
+
+    return render_template('organizer_page.html')
+
+@app.route('/contestant_login')
+def contestant_login():
+    return render_template('contestant_login.html')
+
+@app.route('/organizer_login')
+def organizer_login():
+    return render_template('organizer_login.html')
 
 @app.route('/logout')
 @login_required
