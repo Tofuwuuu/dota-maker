@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField
-from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms.validators import InputRequired, Length
+
 import os
 
 app = Flask(__name__)
@@ -32,18 +33,15 @@ class BaseForm(FlaskForm):
 class LoginForm(BaseForm):
     submit.label.text = 'Login'
 
-class RegistrationForm(BaseForm):
+class RegistrationForm(FlaskForm):
+    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
+    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
     role = SelectField('Role', choices=[('player', 'Player'), ('organizer', 'Organizer')], validators=[InputRequired()])
-    submit.label.text = 'Register'
+    submit = SubmitField('Register')
 
-    def validate_username(self, field):
-        if User.query.filter_by(username=field.data).first():
-            raise ValidationError('Username already registered')
-
-# Routes
 @app.route('/')
 def home():
-    return render_template('base.html')
+    return render_template('base/base.html')
 
 def process_login(form, user):
     if user and user.password == form.password.data:
@@ -65,6 +63,10 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
+        existing_user = User.query.filter_by(username=form.username.data).first()
+        if existing_user:
+            return render_template('register.html', form=form, error='Username already registered')
+
         new_user = User(username=form.username.data, password=form.password.data, role=form.role.data)
         db.session.add(new_user)
         db.session.commit()
@@ -73,6 +75,24 @@ def register():
 
     return render_template('register.html', form=form)
 
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html', user=current_user)
+
+@app.route('/create_tournament')
+@login_required
+def create_tournament():
+    if current_user.role != 'organizer':
+        return redirect(url_for('login'))
+
+    return render_template('create_tournament.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
