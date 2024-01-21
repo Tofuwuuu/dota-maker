@@ -7,7 +7,7 @@ from wtforms.validators import InputRequired, Length, ValidationError
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SECRET_KEY'] = os.urandom(24)
 
 db = SQLAlchemy(app)
