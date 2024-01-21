@@ -14,17 +14,16 @@ body {
 .tournament-details,
 .dashboard-container,
 form {
-    background-color: #333;
+    background-color: #741c18;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    width: 1000px;
     text-align: center;
 }
 
 .welcome-container {
-    border: 2px solid #007BFF;
-    border-image: linear-gradient(to right, #007BFF, #28a745);
+    /* border: 2px solid #007BFF; */
+    /* border-image: linear-gradient(to right, #007BFF, #28a745); */
     border-image-slice: 1;
     padding: 20px;
     text-align: center;
@@ -33,13 +32,13 @@ form {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.welcome-container:hover {
+/* .welcome-container:hover {
     transform: scale(1.03);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-}
+} */
 
 h1 {
-    color: #28a745;
+    /* color: #28a745; */
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -80,14 +79,14 @@ a.create-tournament-link:hover {
     transition: background-color 0.3s ease-in-out;
 }
 
-form {
+/* form {
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 form:hover {
     background-color: #444;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
+} */
 
 label {
     color: #fff;
@@ -101,14 +100,14 @@ input {
 }
 
 input[type="submit"] {
-    background-color: #007BFF;
+    background-color: #444444;
     color: #fff;
     cursor: pointer;
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+    background-color: #4e4e4e;
+    /* box-shadow: 0 0 10px rgba(0, 123, 255, 0.7); */
 }
 
 .tournament-details {
