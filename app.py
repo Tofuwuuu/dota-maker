@@ -24,32 +24,39 @@ class User(db.Model, UserMixin):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-class LoginForm(FlaskForm):
+class BaseForm(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
-    submit = SubmitField('Login')
+    submit = SubmitField()
 
-class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[InputRequired(), Length(min=4, max=20)])
-    password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)])
+class LoginForm(BaseForm):
+    submit.label.text = 'Login'
+
+class RegistrationForm(BaseForm):
     role = SelectField('Role', choices=[('player', 'Player'), ('organizer', 'Organizer')], validators=[InputRequired()])
-    submit = SubmitField('Register')
+    submit.label.text = 'Register'
 
+    def validate_username(self, field):
+        if User.query.filter_by(username=field.data).first():
+            raise ValidationError('Username already registered')
+
+# Routes
 @app.route('/')
 def home():
     return render_template('base.html')
+
+def process_login(form, user):
+    if user and user.password == form.password.data:
+        login_user(user)
+        return redirect(url_for('dashboard'))
+    return render_template('login.html', form=form, error='Invalid credentials')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and user.password == form.password.data:
-            login_user(user)
-            return redirect(url_for('dashboard'))
-        else:
-            return render_template('login.html', form=form, error='Invalid credentials')
+        return process_login(form, User.query.filter_by(username=form.username.data).first())
 
     return render_template('login.html', form=form)
 
@@ -58,10 +65,6 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        existing_user = User.query.filter_by(username=form.username.data).first()
-        if existing_user:
-            return render_template('register.html', form=form, error='Username already registered')
-
         new_user = User(username=form.username.data, password=form.password.data, role=form.role.data)
         db.session.add(new_user)
         db.session.commit()
@@ -70,24 +73,6 @@ def register():
 
     return render_template('register.html', form=form)
 
-@app.route('/dashboard')
-@login_required
-def dashboard():
-    return render_template('dashboard.html', user=current_user)
-
-@app.route('/create_tournament')
-@login_required
-def create_tournament():
-    if current_user.role != 'organizer':
-        return redirect(url_for('login'))
-
-    return render_template('create_tournament.html')
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
