@@ -20,8 +20,8 @@
                 <div class="dropdown-group">
                     {{ form.role.label }}
                     {{ form.role(class="dropdown", id="account_type") }}
-                    <label class="dropdown-label" for="account_type">Account Type</label>
                 </div>
+                <br>
 
                 {{ form.submit(class="button", value="Continue") }}
                 <p><a href="{{ url_for('home') }}" class="home-button">Home</a></p>

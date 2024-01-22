@@ -31,7 +31,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class RegistrationForm(FlaskForm):
-    role = SelectField('Role', choices=[('contestant', 'Contestant'), ('organizer', 'Organizer')], validators=[InputRequired()])
+    role = SelectField('Register as: ', choices=[('contestant', 'Contestant'), ('organizer', 'Organizer')], validators=[InputRequired()])
     submit = SubmitField('Register')
 
 
@@ -62,9 +62,9 @@ def register():
         role = form.role.data
 
         if role == 'contestant':
-            return redirect(url_for('contestant_login'))
+            return redirect(url_for('contestant_register'))
         elif role == 'organizer':
-            return redirect(url_for('organizer_login'))
+            return redirect(url_for('organizer_register'))
 
     return render_template('register.html', form=form)
 
@@ -95,13 +95,13 @@ def create_tournament():
 
     return render_template('organizer_page.html')
 
-@app.route('/contestant_login')
-def contestant_login():
-    return render_template('contestant_login.html')
+@app.route('/contestant_register')
+def contestant_register():
+    return render_template('contestant_register.html')
 
-@app.route('/organizer_login')
-def organizer_login():
-    return render_template('organizer_login.html')
+@app.route('/organizer_register')
+def organizer_register():
+    return render_template('organizer_register.html')
 
 @app.route('/logout')
 @login_required

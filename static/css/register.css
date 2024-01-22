@@ -48,9 +48,11 @@ body {
 }
 
 .button {
-    background-color: #4CAF50;
+    background-color: #141414;
     color: white;
-    border: none;
+    border: #701616;
+    border-width: 2px;
+    border-style: solid;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 5px;
@@ -58,15 +60,18 @@ body {
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: #a01f1f;
+    border: #a01f1f;
+    border-width: 2px;
+    border-style: solid;
 }
 
 .home-button {
     color: #fff;
     text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
 }
 
 .home-button:hover {
-    background-color: #007BFF;
+    color: #141414;
 }
