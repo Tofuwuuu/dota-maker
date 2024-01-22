@@ -32,11 +32,6 @@ form {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* .welcome-container:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-} */
-
 h1 {
     /* color: #28a745; */
     font-size: 24px;
@@ -78,15 +73,6 @@ a.create-tournament-link:hover {
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
-
-/* form {
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-form:hover {
-    background-color: #444;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-} */
 
 label {
     color: #fff;

@@ -80,21 +80,6 @@ def create_tournament():
 
     return render_template('create_tournament.html')
 
-# @app.route('/contestant_page')
-# def contestant_page():
-#     if current_user.role != 'contestant':
-#         return redirect(url_for('login'))
-
-#     return render_template('contestant_page.html')
-
-# @app.route('/organizer_page')
-# @login_required
-# def organizer_page():
-#     if current_user.role != 'organizer':
-#         return redirect(url_for('login'))
-
-    return render_template('organizer_page.html')
-
 @app.route('/contestant_register')
 def contestant_register():
     return render_template('contestant_register.html')

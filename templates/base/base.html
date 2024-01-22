@@ -5,25 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Navigation Bar</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <style>
+        .white{
+            color: white;
+        }
+        .card{
+            margin: 10px;
+            margin-left: 30px;
+            background-color: rgb(117, 27, 27);
+            width: 50vw;
+            box-sizing: border-box;
+            padding-top: 10px;
+            padding-left: 30px;
+            padding-bottom: 20px;
+            border-radius: 10px 50px 10px 20px;
+            transition: 300ms;
+            height: 110px;
+            overflow: hidden;
+            transition-delay: 200ms;
+        }
+        .card:hover{
+            height: 150px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="navbar">
-    wew
-    {% for link in navigation_links %}
-        <a href="#">{{ link }}</a>
-    {% endfor %}
-    <div class="right">
-        <form action="{{ url_for('login') }}" class="form-inline">
-            <button type="submit" class="button">Login</button>
-        </form>
+    <div class="navbar">
+        {% for link in navigation_links %}
+            <a href="#">{{ link }}</a>
+        {% endfor %}
+        <div class="right">
+            <form action="{{ url_for('login') }}" class="form-inline">
+                <button type="submit" class="button">Login</button>
+            </form>
 
-        <form action="{{ url_for('register') }}" class="form-inline">
-            <button type="submit" class="button create-tournament-link">Register</button>
-        </form>
+            <form action="{{ url_for('register') }}" class="form-inline">
+                <button type="submit" class="button create-tournament-link">Register</button>
+            </form>
+        </div>
     </div>
-</div>
 
-
+    <h1 class="white">Scheduled tournaments:</h1>
+    <div class="">
+        {% for _ in range(3) %}
+            <div class="card">
+                <h2>Tournament No.</h2>
+                <p>Date: xx/xx/xx venue: bahay ko</p>
+                <button class="right">View Details</button>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
